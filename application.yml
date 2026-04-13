@@ -1,0 +1,16 @@
+spring:
+  kafka:
+    producer:
+      # Fixes the current error: tells Kafka how to SEND the Transaction object
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: midas-core-group
+      auto-offset-reset: earliest
+      # Tells Kafka how to RECEIVE the Transaction object
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.jpmc.midascore.foundation.Transaction
+
+general:
+  kafka-topic: trader-updates
